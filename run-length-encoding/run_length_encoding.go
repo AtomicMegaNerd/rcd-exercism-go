@@ -11,11 +11,7 @@ type Cluster struct {
 	count int
 }
 
-func NewCluster(ch rune) Cluster {
-	return Cluster{ch: ch, count: 1}
-}
-
-func NewClusterWithCount(ch rune, count int) Cluster {
+func NewCluster(ch rune, count int) Cluster {
 	return Cluster{ch: ch, count: count}
 }
 
@@ -45,13 +41,13 @@ func RunLengthEncode(input string) string {
 
 	for ix, ch := range input {
 		if ix == 0 {
-			currentCluster = NewCluster(ch)
+			currentCluster = NewCluster(ch, 1)
 			continue
 		}
 
 		if ch != currentCluster.ch {
 			clusters = append(clusters, currentCluster)
-			currentCluster = NewCluster(ch)
+			currentCluster = NewCluster(ch, 1)
 		} else {
 			currentCluster.increment()
 		}
@@ -81,10 +77,10 @@ func RunLengthDecode(input string) string {
 		count, err := strconv.Atoi(match[1])
 		if err == nil {
 			ch := []rune(match[2])[0]
-			currentCluster = NewClusterWithCount(ch, count)
+			currentCluster = NewCluster(ch, count)
 		} else {
 			ch := []rune(match[0])[0]
-			currentCluster = NewClusterWithCount(ch, 1)
+			currentCluster = NewCluster(ch, 1)
 		}
 		clusters = append(clusters, currentCluster)
 	}
