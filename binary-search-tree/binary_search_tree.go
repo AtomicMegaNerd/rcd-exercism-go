@@ -31,10 +31,6 @@ func (std *SearchTreeData) Insert(i int) {
 // SearchTreeData that has the numbers [1,3,7,5] added will return the
 // []string ["1", "3", "5", "7"].
 func (std *SearchTreeData) MapString(func(int) string) (result []string) {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
 	return []string{}
 }
 
@@ -42,10 +38,16 @@ func (std *SearchTreeData) MapString(func(int) string) (result []string) {
 // The values are in increasing order starting with the lowest int value.
 // SearchTreeData that has the numbers [1,3,7,5] added will return the
 // []int [1,3,5,7].
-func (std *SearchTreeData) MapInt(func(int) int) (result []int) {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return []int{}
+func (std *SearchTreeData) MapInt(f func(int) int) (result []int) {
+	if std.left == nil {
+		result = append(result, std.data)
+	} else {
+		result = std.left.MapInt(f)
+	}
+	if std.right == nil {
+		result = append(result, std.data)
+	} else {
+		result = std.right.MapInt(f)
+	}
+	return
 }
