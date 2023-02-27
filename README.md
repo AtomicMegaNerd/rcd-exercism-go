@@ -2,4 +2,4 @@
 
 These are my solutions to the Exercism exercises for Go.
 
-[exercism.org](https://exercism.org)
+[https://exercism.org/profiles/AtomicMegaNerd](https://exercism.org/profiles/AtomicMegaNerd)
